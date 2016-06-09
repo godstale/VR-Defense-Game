@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:background="@drawable/main_title"
+    tools:context="com.hardcopy.vrdefense.MainActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_credit"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone" >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:background="#555555"
+            android:text="@string/button_credit"
+            />
+        <TextView android:id="@+id/text_credit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dip"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            android:background="#555555"
+            android:text="@string/credit_text"
+            />
+        <Button android:id="@+id/button_exit_credit"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/button_exit"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_menu"
+        android:orientation="vertical"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:gravity="top|right"
+        android:layout_weight="1" >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:gravity="top"
+            android:layout_weight="1" />
+        <Button android:id="@+id/button_start"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/button_start"
+            android:textSize="12sp" />
+        <Button android:id="@+id/button_bt"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/button_bt"
+            android:textSize="12sp" />
+        <Button android:id="@+id/button_credit"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/button_credit"
+            android:textSize="12sp" />
+        <Button android:id="@+id/button_exit"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:text="@string/button_exit"
+            android:textSize="12sp" />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:gravity="top"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_info"
+        android:orientation="vertical"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
+        >
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:gravity="top"
+            android:layout_weight="1" />
+        <TextView android:id="@+id/text_score"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/title_other_devices"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <TextView android:id="@+id/text_bt_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dip"
+            android:gravity="center"
+            android:text="@string/title_other_devices"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:gravity="top"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>

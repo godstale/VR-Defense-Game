@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">VR Defense</string>
+
+    <!-- Main activity -->
+    <string name="button_start">Start game</string>
+    <string name="button_bt">Setup Bluetooth</string>
+    <string name="button_credit">Credit</string>
+    <string name="button_exit">Exit</string>
+    <string name="credit_text">Game design by HardCopyWorld.com\n
+        Supports Google cardboard VR\n
+        Powered by Rajawali 3D engine\n
+        Mothership, Dark fighter object from Rajawali VR example\n
+        Destroyer object from MacGyver(http://www.thingiverse.com/MacGyver/about)\n
+        Skybox from Space Engine(http://en.spaceengine.org/forum/21-514-1)\n\n
+        Get the full java source at: https://github.com/godstale/VR-Defense-Game
+    </string>
+
+    <!-- Bluetooth -->
+    <string name="bt_title">Bluetooth</string>
+    <string name="bt_state_init">initializing</string>
+    <string name="bt_state_wait">waiting.. (select a device manually)</string>
+    <string name="bt_state_connect">connecting</string>
+    <string name="bt_state_connected">connected</string>
+    <string name="bt_state_error">error</string>
+    <string name="bt_not_enabled_leaving">Bluetooth is not enabled. Set the bluetooth on at phone settings.</string>
+    <string name="bt_cmd_sending_error">Transaction failed</string>
+
+    <!-- DeviceListActivity -->
+    <string name="scanning">Scanning for devices...</string>
+    <string name="select_device">Select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+    <string name="button_cancel">Cancel</string>
+
+    <!-- Options Menu -->
+    <string name="connect">Connect\na device</string>
+    <string name="discoverable">Make\ndiscoverable</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="renderer_category">Wallpaper Renderer</string>
+    <string name="renderer_picker_title">Renderer</string>
+    <string name="renderer_picker_summary">Choose the renderer class to use for the wallpaper demo.</string>
+    <string name="touch_a_monkey">Touch a monkey :)</string>
+    <string name="add_cube">Add Cube</string>
+    <string name="remove_cube">Remove Random Cube</string>
+    <string name="example_scene_add_remove_objects">Add/Remove Children</string>
+</resources>

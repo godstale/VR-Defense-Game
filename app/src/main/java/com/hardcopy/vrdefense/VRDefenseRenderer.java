@@ -1,0 +1,95 @@
+package com.hardcopy.vrdefense;
+
+import android.content.Context;
+import android.os.Handler;
+import android.util.Log;
+import android.view.MotionEvent;
+
+import com.google.vrtoolkit.cardboard.HeadTransform;
+import com.hardcopy.vrdefense.world.World;
+
+import org.rajawali3d.util.MeshExporter;
+import org.rajawali3d.vr.renderer.VRRenderer;
+
+
+public class VRDefenseRenderer extends VRRenderer {
+
+    private Handler mHandler;
+    private World mWorld;
+    private float[] mHeadViewUpVec = new float[3];
+    private float[] mHeadViewForwardVec = new float[3];
+
+
+
+    public VRDefenseRenderer(Context context) {
+        super(context);
+    }
+
+    @Override
+    public void initScene() {
+        mWorld = new World(getContext(), this);
+        mWorld.initialize();
+    }
+
+    @Override
+    public void onRender(long elapsedTime, double deltaTime) {
+        super.onRender(elapsedTime, deltaTime);
+
+        mWorld.update(mHeadViewForwardVec, mHeadViewUpVec);
+        if(mWorld.getGameStatus() == World.GAME_STATUS_END)
+            pauseGame();
+    }
+
+    @Override
+    public void onOffsetsChanged(float xOffset, float yOffset, float xOffsetStep, float yOffsetStep, int xPixelOffset,
+                                 int yPixelOffset) {
+
+    }
+
+    @Override public void onTouchEvent(MotionEvent event) {
+        Log.d("VR", "x="+event.getX()+", y="+event.getY());
+    }
+
+    @Override
+    public void onNewFrame(HeadTransform headTransform) {
+        headTransform.getUpVector(mHeadViewUpVec, 0);
+        headTransform.getForwardVector(mHeadViewForwardVec, 0);
+        super.onNewFrame(headTransform);
+    }
+
+    public void setHandler(Handler h) {
+        mHandler = h;
+    }
+
+    public void pauseGame() {
+        mWorld.pauseGame();
+    }
+
+    public void finish() throws Throwable {
+        mWorld.pauseGame();
+        mWorld.finish();
+        stopRendering();
+        finalize();
+    }
+
+    public void fire() {
+        mWorld.fire();
+    }
+
+    public void pauseAudio() {
+        if(mWorld != null)
+            mWorld.pauseAudio();
+    }
+
+    public void resumeAudio() {
+        if(mWorld != null)
+            mWorld.resumeAudio();
+    }
+
+    public int getScore() {
+        if(mWorld == null)
+            return -1;
+        return mWorld.getScore();
+    }
+
+}

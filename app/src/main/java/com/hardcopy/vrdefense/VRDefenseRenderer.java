@@ -73,7 +73,8 @@ public class VRDefenseRenderer extends VRRenderer {
     }
 
     public void fire() {
-        mWorld.fire();
+        if(mWorld != null)
+            mWorld.fire();
     }
 
     public void pauseAudio() {

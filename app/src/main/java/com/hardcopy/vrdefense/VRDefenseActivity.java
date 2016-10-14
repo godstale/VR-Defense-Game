@@ -55,6 +55,7 @@ public class VRDefenseActivity extends VRActivity {
         mRenderer = new VRDefenseRenderer(this);
         setRenderer(mRenderer);
         mRenderer.setHandler(mHandler);
+        mRenderer.setCallback(new RendererCallback());
 
         setConvertTapIntoTrigger(true);
 
@@ -186,5 +187,22 @@ public class VRDefenseActivity extends VRActivity {
 
             super.handleMessage(msg);
         }
-    }	// End of class MainHandler
+    }	// End of class BtHandler
+
+    /**
+     * Callback from VRDefenseRenderer
+     */
+    class RendererCallback implements VRDefenseRenderer.Callback {
+        @Override
+        public void onEvent(int event, int argInt0, int argInt1, Object argObj) {
+            switch(event) {
+                case RendererConst.RENDERER_CALLBACK_DAMAGED:
+                    Log.d(TAG, "Mothership damaged!!");
+                    byte[] out = {'d'};
+                    if(mBtManager != null)
+                        mBtManager.write(out);
+                    break;
+            }	// End of switch(msg.what)
+        }
+    }	// End of class BtHandler
 }

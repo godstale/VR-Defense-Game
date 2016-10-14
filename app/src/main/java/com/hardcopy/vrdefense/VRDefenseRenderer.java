@@ -15,10 +15,14 @@ import org.rajawali3d.vr.renderer.VRRenderer;
 public class VRDefenseRenderer extends VRRenderer {
 
     private Handler mHandler;
+    private Callback mCallback;
     private World mWorld;
     private float[] mHeadViewUpVec = new float[3];
     private float[] mHeadViewForwardVec = new float[3];
 
+    public interface Callback {
+        public void onEvent(int event, int argInt0, int argInt1, Object argObj);
+    }
 
 
     public VRDefenseRenderer(Context context) {
@@ -29,6 +33,9 @@ public class VRDefenseRenderer extends VRRenderer {
     public void initScene() {
         mWorld = new World(getContext(), this);
         mWorld.initialize();
+        if(mCallback != null) {
+            mWorld.setCallback(mCallback);
+        }
     }
 
     @Override
@@ -61,6 +68,15 @@ public class VRDefenseRenderer extends VRRenderer {
         mHandler = h;
     }
 
+    public void setCallback(Callback c) {
+        mCallback = c;
+        if(mWorld != null) {
+            mWorld.setCallback(c);
+        } else {
+            Log.d("VRDefense", "mWorld is null !!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+    }
+
     public void pauseGame() {
         mWorld.pauseGame();
     }
@@ -68,6 +84,7 @@ public class VRDefenseRenderer extends VRRenderer {
     public void finish() throws Throwable {
         mWorld.pauseGame();
         mWorld.finish();
+        mWorld = null;
         stopRendering();
         finalize();
     }

@@ -8,6 +8,8 @@ import android.util.Log;
 import com.hardcopy.vrdefense.R;
 
 import com.google.vrtoolkit.cardboard.audio.CardboardAudioEngine;
+import com.hardcopy.vrdefense.RendererConst;
+import com.hardcopy.vrdefense.VRDefenseRenderer;
 
 import org.rajawali3d.Object3D;
 import org.rajawali3d.animation.Animation;
@@ -61,6 +63,8 @@ public class World {
     private Context mContext;
     // 3D essentials
     private VRRenderer mRenderer;
+    // Callback
+    private VRDefenseRenderer.Callback mCallback;
 
     // World
     private SquareTerrain mTerrain;
@@ -134,6 +138,7 @@ public class World {
                 mEnemies.add(ship);
             delay = delay + 5000;
         }
+
         // cache missile object
         mMissiles = new Vector<Missile>();
         prepareMissile();
@@ -146,8 +151,27 @@ public class World {
     public void finish() {
         pauseAudio();
         pauseGame();
+        // Remove objects from scene
+        for(int i=mMissiles.size()-1; i>-1; i--) {
+            Missile missile = mMissiles.get(i);
+            mRenderer.getCurrentScene().removeChild(missile.object);
+            mMissiles.remove(missile);
+        }
+        for(int i=0; i<mEnemyCountMax; i++) {
+            EnemySpaceship enemy = mEnemies.get(i);
+            mRenderer.getCurrentScene().removeChild(enemy.object);
+        }
+        mRenderer.getCurrentScene().removeChild(mTerrain);
+        mRenderer.getCurrentScene().removeChild(mDestroyer.object);
+        mRenderer.getCurrentScene().removeChild(mMothershipObj);
+        mRenderer.getCurrentScene().removeChild(mCameraBox);
+
         mGameStatus = GAME_STATUS_END;
         mContext = null;
+    }
+
+    public void setCallback(VRDefenseRenderer.Callback c) {
+        mCallback = c;
     }
 
     public void update(float[] headViewForward, float[] headViewUp) {
@@ -219,6 +243,8 @@ public class World {
                         endGame();
                         return;
                     }
+                    if(mCallback != null)
+                        mCallback.onEvent(RendererConst.RENDERER_CALLBACK_DAMAGED, 0, 0, null);
                 }
 //                else if(missile.from == Missile.FROM_FRIENDLY
 //                        && bbox.intersectsWith(mDestroyer.getBoundingBox())) {
